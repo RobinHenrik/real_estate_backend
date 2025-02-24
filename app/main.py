@@ -8,7 +8,7 @@ app = FastAPI()
 @app.post("/predict")
 def predict(input_data: PredictionInput):
     try:
-        prediction = make_prediction(input_data.dict())
+        prediction = make_prediction(input_data.model_dump())
         return {"predicted_price": round(prediction)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Prediction error: {e}")
